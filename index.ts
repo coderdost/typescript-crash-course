@@ -173,3 +173,9 @@ console.log(gen<Array<number>>([1],[2]));
 function addUser<T extends {id: string}>(user:T){
     return user.id;
 }
+
+// any type
+
+function noRestrictions(a:any,b:any): any{
+    return a+b;
+}
