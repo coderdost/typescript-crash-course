@@ -1,15 +1,19 @@
-// type annotations
+// Type annotations
 let fullName:string = "jack";
 
-// array assignments
+fullName = 'john';
+
+let num : number;
+num = 1;
+
+// Array assignments
 const names:string[] = [];
 names.push("hi");
 
 // function assignments
-function sum(a:any, b:any):number{
+function sum(a:number, b:number):number{
     return a+b;
 }
-// console.log(5 * sum('a','b'))
 
 // Tuples
 
@@ -46,7 +50,6 @@ interface Person{
 let p:Person;
 p = {name: 'jack',age:40, id:1};
 
-// Intersection 
 
 interface Student{
     name: string;
@@ -54,13 +57,15 @@ interface Student{
     rollNo : number;
 }
 
+// Union 
 
 let p1: Person | Student;
 p1 = {name:'jack',age:1,rollNo:1};
 p1 = {name:'john',age:1,id:1};
+p1 = {name:'jack',age:2,rollNo:1,id:2}
 
 
-// Union 
+// Intersection 
 
 let p2: Person & Student;
 p2 = {name:'jack',age:1,rollNo:1, id:2};
@@ -71,8 +76,12 @@ p2 = {name:'jack',age:1,rollNo:1, id:2};
 type Count = string | number;
 let c : Count;
 c = 1.2;
-c = 'a';
+c = 'one';
 // c = false;
+
+type X  = string & number;  // never
+const n:[]=[]; // never array
+// n.push('hi');
 
 
 // Class 
@@ -149,20 +158,18 @@ class CarC implements ICar, ICar2{
 
     }
 }
-
 // Generics
 
-function adder<T>(a:T,b:T): Array<T>{
-    return [a,b];
+function gen<T>(a : T,b : T) : T[]{
+    return [a,b]
 }
 
-console.log(adder<string>('1','2'));
-console.log(adder<number>(1,2));
-console.log(adder<Array<number>>([1],[2]));
+console.log(gen<string>('1','2'));
+console.log(gen<number>(1,2));
+console.log(gen<Array<number>>([1],[2]));
 
-// extends in Generic
+// extends in Generics
 
-function addPerson<T extends {id:string}>(person:T): string{
-    return person.id;
+function addUser<T extends {id: string}>(user:T){
+    return user.id;
 }
-
